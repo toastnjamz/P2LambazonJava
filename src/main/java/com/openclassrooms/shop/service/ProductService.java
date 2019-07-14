@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class ProductService {
@@ -27,34 +28,39 @@ public class ProductService {
 	}
 
 	/**
-	 * @return all products from the inventory
+	 * @return a list of all products from the inventory
 	 */
-	public Product[] getAllProducts() {
+	public List<Product> getAllProducts() {
 
-		// TODO change the return type from array to List<T> and propagate the change
+		// Changed the return type from array to List<T> and propagated the change
 		// throughout the application
-		return productRepository.findAll();
+		List<Product> allProductsList = new ArrayList<Product>();
+		allProductsList = productRepository.findAll();
+		return allProductsList;
 	}
 
 	/**
 	 *
 	 * @param productId Id of the product
-	 * @return a product form the inventory
+	 * @return a product from the inventory
 	 */
 	public Product getProductById(Long productId)
 	{
-		// TODO implement the method
-		return null;
-
+		// Implemented the method by converting the list of products in inventory to a stream, 
+		// filtering by ID, and returning the first matching product
+		Product product = productRepository.getProducts().stream().filter(p -> p.getId() == productId).findFirst().get();
+		return product;
 	}
 
 	/**
-	 * Update the quantities left for each product in the inventory depending of ordered the quantities
+	 * Updates the quantities left for each product in the inventory depending of ordered the quantities
 	 * @param productId ID of the product to be updated
 	 */
 	public void updateProductQuantities(Long productId, int quantity)
 	{
-
-		// TODO implement the method
+		// Retrieves the product by ID, then updates the quantity through the Product class getters and setters 
+		Product product = getProductById(productId);
+		product.setStock(product.getStock() - quantity);
+		
 	}
 }

@@ -5,14 +5,16 @@ import java.util.List;
 import java.util.Optional;
 
 public class Cart {
+	
+	// Creating a private variable for the cartline list that holds cart products
+	private List<CartLine> cartLineList = new ArrayList<CartLine>() ;
 
     /**
      *
      * @return the actual cartline list
      */
     public List<CartLine> getCartLineList() {
-        //TODO implement the method
-        return null;
+    	return cartLineList;
     }
 
     /**

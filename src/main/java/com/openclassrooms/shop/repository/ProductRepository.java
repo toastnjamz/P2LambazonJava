@@ -38,11 +38,21 @@ public class ProductRepository {
     }
 
     /**
-     * @return All products from the inventory
+     * @return public getter to return Private ArrayList of products for use in ProductService.java
      */
-    public Product[] findAll()
+    public List<Product> getProducts() {
+    	return products;
+    }
+    
+    /**
+     * Converts list of products to a stream, filters and compares on the sequence of objects, then converts back to a list
+     * @return All products in a list from the inventory
+     */
+    public List<Product> findAll()
     {
-        return products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName)).toArray(Product[]::new);
+    	List<Product> allProductsList = new ArrayList<Product>();
+    	allProductsList = products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
+    	return allProductsList;
     }
 
     /**
