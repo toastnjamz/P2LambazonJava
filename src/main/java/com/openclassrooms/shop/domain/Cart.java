@@ -23,7 +23,13 @@ public class Cart {
      * @param quantity the quantity
      */
     public void addItem(Product product, int quantity) {
-        // TODO implement the method
+        // Search the cartLineList for the product and if found, increment the quantity. If not found, add to cartLineList.
+    	for (CartLine item : getCartLineList()) {
+    		if (item.getProduct().equals(product)) {
+    			item.setQuantity(item.getQuantity() + quantity);	
+    		}
+    		getCartLineList().add(new CartLine(product, quantity));
+    	}
     }
 
     /**
