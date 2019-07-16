@@ -3,6 +3,7 @@ package com.openclassrooms.shop.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Cart {
 	
@@ -46,9 +47,12 @@ public class Cart {
      */
     public double getTotalValue()
     {
-         //TODO implement the method
-        return 0.0;
-
+        // For each product in the cartLineList, get the subtotal and add it to the totalValue variable
+    	double totalValue = 0.0;
+    	for (CartLine item : getCartLineList()) {
+        	 totalValue += item.getSubtotal();
+         }
+        return totalValue;
     }
 
     /**
@@ -56,8 +60,17 @@ public class Cart {
      */
     public double getAverageValue()
     {
-        // TODO implement the method
-        return 0.0;
+        // If the list isn't empty, for each product in the cartLineList, 
+    	// get the subtotal and add it to the totalValue variable.
+    	// Otherwise return the initial value of the averageValue variable.
+    	double averageValue = 0.0;
+    	if (!getCartLineList().isEmpty()) {
+	    	for (CartLine item : getCartLineList()) {
+	    		averageValue += item.getSubtotal();
+	         }
+	        return averageValue / getCartLineList().size();
+    	}
+    	return averageValue;
     }
 
     /**
@@ -66,8 +79,11 @@ public class Cart {
      */
     public Product findProductInCartLines(Long productId)
     {
-        // TODO implement the method
-        return null;
+    	//
+    	//getCartLineList().removeIf(l -> l.getProduct().getId().equals(Product.getId()));
+    	//Product product = getCartLineList().CartLine.stream().filter(p -> p.getId() == productId).findFirst().get();
+        //return product;
+    	return null;
     }
 
     /**
