@@ -3,7 +3,6 @@ package com.openclassrooms.shop.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Cart {
 	
@@ -79,10 +78,11 @@ public class Cart {
      */
     public Product findProductInCartLines(Long productId)
     {
-    	//
-    	//getCartLineList().removeIf(l -> l.getProduct().getId().equals(Product.getId()));
-    	//Product product = getCartLineList().CartLine.stream().filter(p -> p.getId() == productId).findFirst().get();
-        //return product;
+    	// For each product in the cartLineList, check if the productId matches the arguement
+    	for (CartLine item : getCartLineList()) {
+    		if (item.getProduct().getId().equals(productId))
+    			return item.getProduct();
+    	}
     	return null;
     }
 
