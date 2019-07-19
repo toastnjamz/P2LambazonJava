@@ -50,8 +50,7 @@ public class ProductRepository {
      */
     public List<Product> findAll()
     {
-    	List<Product> allProductsList = new ArrayList<Product>();
-    	allProductsList = products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
+    	List<Product> allProductsList = products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
     	return allProductsList;
     }
 

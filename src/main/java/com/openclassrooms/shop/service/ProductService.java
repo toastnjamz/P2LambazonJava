@@ -34,8 +34,7 @@ public class ProductService {
 
 		// Changed the return type from array to List<T> and propagated the change
 		// throughout the application
-		List<Product> allProductsList = new ArrayList<Product>();
-		allProductsList = productRepository.findAll();
+		List<Product> allProductsList = productRepository.findAll();
 		return allProductsList;
 	}
 

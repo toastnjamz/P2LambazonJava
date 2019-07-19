@@ -26,9 +26,10 @@ public class Cart {
         // Search the cartLineList for the product and if found, increment the quantity. If not found, add to cartLineList.
     	for (CartLine item : getCartLineList()) {
     		if (item.getProduct().equals(product)) {
-    			item.setQuantity(item.getQuantity() + quantity);	
+    			item.setQuantity(item.getQuantity() + quantity);
+    			return;
     		}
-    		getCartLineList().add(new CartLine(product, quantity));
+    		cartLineList.add(new CartLine(product, quantity));
     	}
     }
 
@@ -39,7 +40,6 @@ public class Cart {
     public void removeLine(Product product) {
         getCartLineList().removeIf(l -> l.getProduct().getId().equals(product.getId()));
     }
-
 
     /**
      * @return total value of a cart
