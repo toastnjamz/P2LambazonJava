@@ -7,7 +7,7 @@ import java.util.Optional;
 public class Cart {
 	
 	// Creating a private variable for the cartline list that holds cart products
-	private List<CartLine> cartLineList = new ArrayList<CartLine>() ;
+	private List<CartLine> cartLineList = new ArrayList<>() ;
 
     /**
      *

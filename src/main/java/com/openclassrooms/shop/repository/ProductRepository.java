@@ -40,6 +40,7 @@ public class ProductRepository {
     /**
      * @return public getter to return Private ArrayList of products for use in ProductService.java
      */
+    // TODO remove
     public List<Product> getProducts() {
     	return products;
     }
