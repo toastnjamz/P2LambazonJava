@@ -3,6 +3,7 @@ package com.openclassrooms.shop.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Cart {
 	
@@ -24,13 +25,12 @@ public class Cart {
      */
     public void addItem(Product product, int quantity) {
         // Search the cartLineList for the product and if found, increment the quantity. If not found, add to cartLineList.
-    	for (CartLine item : getCartLineList()) {
-    		if (item.getProduct().equals(product)) {
-    			item.setQuantity(item.getQuantity() + quantity);
-    			return;
-    		}
-    		cartLineList.add(new CartLine(product, quantity));
-    	}
+		final Predicate<CartLine> filterByProductId = cl -> cl.getProduct().getId().longValue() == product.getId().longValue();
+		final CartLine cartLine = getCartLineList().stream().filter(filterByProductId).findFirst().orElse(null);
+		if (cartLine == null && quantity > 0)
+			getCartLineList().add(new CartLine(product, quantity));
+		else if (quantity > 0)
+			cartLine.setQuantity(cartLine.getQuantity() + quantity);
     }
 
     /**
@@ -78,7 +78,7 @@ public class Cart {
      */
     public Product findProductInCartLines(Long productId)
     {
-    	// For each product in the cartLineList, check if the productId matches the arguement
+    	// For each product in the cartLineList, check if the productId matches the argument
     	for (CartLine item : getCartLineList()) {
     		if (item.getProduct().getId().equals(productId))
     			return item.getProduct();
