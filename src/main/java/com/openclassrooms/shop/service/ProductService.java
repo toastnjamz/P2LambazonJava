@@ -45,10 +45,7 @@ public class ProductService {
 	 */
 	public Product getProductById(Long productId)
 	{
-		// Implemented the method by converting the list of products in inventory to a stream, 
-		// filtering by ID, and returning the first matching product
-		//Product product = productRepository.getProducts().stream().filter(p -> p.getId() == productId).findFirst().get();
-		// Returns a product that matches the productId arguement, otherwise returns null
+		// Returns a product from the productRespository that matches the productId argument, otherwise returns null
 		for (Product item : productRepository.findAll()) {
 			if (item.getId().equals(productId)) {
 				return item;

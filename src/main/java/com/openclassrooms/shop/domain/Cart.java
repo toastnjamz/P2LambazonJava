@@ -27,7 +27,7 @@ public class Cart {
         // Creates a predicate filter to search for the passed in product by productId
     	// Searches for the first instance of the predicate, otherwise returns null
     	// If the predicate is null or greater than 0, add the new item to cartLineList
-    	// Otherwise, if product already exists in the cartLineList, increment quantity by the value passed in
+    	// Otherwise, if product already exists in the cartLineList, increment quantity by the value passed in.
     	final Predicate<CartLine> filterByProductId = cl -> cl.getProduct().getId().longValue() == product.getId().longValue();
 		final CartLine cartLine = getCartLineList().stream().filter(filterByProductId).findFirst().orElse(null);
 		if (cartLine == null && quantity > 0)
