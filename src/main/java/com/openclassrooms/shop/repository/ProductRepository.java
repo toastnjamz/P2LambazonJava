@@ -36,14 +36,6 @@ public class ProductRepository {
         products.add(new Product(++id, 40, 32.50, "VTech CS6114 DECT 6.0", "Cordless Phone"));
         products.add(new Product(++id, 50, 895.00, "NOKIA OEM BL-5J", "Cell Phone "));
     }
-
-    /**
-     * @return public getter to return Private ArrayList of products for use in ProductService.java
-     */
-    // TODO remove
-    public List<Product> getProducts() {
-    	return products;
-    }
     
     /**
      * Converts list of products to a stream, filters and compares on the sequence of objects, then converts back to a list
